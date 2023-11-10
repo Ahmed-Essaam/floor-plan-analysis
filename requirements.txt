@@ -1,0 +1,13 @@
+Flask==2.1.2
+gunicorn==21.2.0
+Werkzeug==2.2.2
+opencv-python-headless==4.5.5.64
+--find-links https://download.pytorch.org/whl/torch_stable.html
+torch==1.9.0+cpu
+lmdb==1.4.0
+scikit-image==0.19.3
+shapely==2.0.0
+svgpathtools==1.5.1
+gdown==4.6.4
+easyocr==1.7.1
+pandas==2.1.2
