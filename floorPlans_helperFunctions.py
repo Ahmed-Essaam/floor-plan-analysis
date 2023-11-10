@@ -4,7 +4,7 @@ import torch
 import torch.nn.functional as F
 from floortrans.models import get_model
 from floortrans.loaders import RotateNTurns
-from floortrans.post_prosessing import split_prediction, get_polygons
+from floortrans.post_prosessing import split_prediction, get_polygons 
 # from mpl_toolkits.axes_grid1 import AxesGrid
 rot = RotateNTurns()
 import cv2
