@@ -23,4 +23,4 @@ steps:
 options:
   logging: CLOUD_LOGGING_ONLY
 
-images: [gcr.io/$PROJECT_ID/$_SERVICE_NAME:$COMMIT_SHA]
+images: [gcr.io/$PROJECT_ID/$_SERVICE_NAME:$COMMIT_SHA] 
