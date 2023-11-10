@@ -1,2 +1,4 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+floortrans/models/model_1427.pth filter=lfs diff=lfs merge=lfs -text
+floortrans/models/model_best_val_loss_var.pkl filter=lfs diff=lfs merge=lfs -text
