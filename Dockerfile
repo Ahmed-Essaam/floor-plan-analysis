@@ -1,5 +1,5 @@
 ### 1. Get Linux
-#FROM alpine:3.18
+#FROM alpine:3.14
 FROM openjdk:17-jdk-alpine
 
 ### 2. Get Java via the package manager
@@ -12,7 +12,7 @@ RUN apk update \
 
 ### 3. Get Python, PIP
 
-RUN apk add --no-cache python3=3.9.7-r3 \
+RUN apk add --no-cache python3 \
 && python3 -m ensurepip \
 && pip3 install --upgrade pip setuptools \
 && rm -r /usr/lib/python*/ensurepip && \
