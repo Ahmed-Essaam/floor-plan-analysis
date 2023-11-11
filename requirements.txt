@@ -1,6 +1,6 @@
 Flask==3.0.0
 gunicorn==21.2.0
-Werkzeug==2.2.2
+Werkzeug==3.0.0
 opencv-python-headless==4.5.5.64
 torch==2.0.1 --index-url https://download.pytorch.org/whl/cpu
 lmdb==1.4.0
