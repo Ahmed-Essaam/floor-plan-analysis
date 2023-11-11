@@ -4,6 +4,9 @@ import traceback
 import logging
 from flask import Flask, request, jsonify
 import json
+import os
+from pathlib import Path
+
 
 ''' 
 ### Description: The function Detects floor plan objects in uploaded images using a pre-trained model 
@@ -34,10 +37,7 @@ def get_Image_Seg(raw_image, device, split, model):
 
     return coors_info
 
-from pathlib import Path
-# load the model
-file_path = Path(__file__).resolve().parent
-device, split, model = load_model(file_path)
+
 
 app = Flask(__name__)
 @app.route("/", methods=["GET", "POST"])
@@ -86,4 +86,7 @@ def index():
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5000)
+    # load the model
+    file_path = Path(__file__).resolve().parent
+    device, split, model = load_model(file_path)
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 8081)))

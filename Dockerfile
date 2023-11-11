@@ -1,27 +1,47 @@
-# Use the official lightweight Python image.
-# https://hub.docker.com/_/python
-FROM python:3.9-slim
+### 1. Get Linux
+#FROM alpine:3.18
+FROM openjdk:17-jdk-alpine
 
-# Allow statements and log messages to immediately appear in the Knative logs
-ENV PYTHONUNBUFFERED True
+### 2. Get Java via the package manager
+RUN apk update \
+&& apk upgrade \
+&& apk add --no-cache bash \
+&& apk add --no-cache --virtual=build-dependencies unzip \
+&& apk add --no-cache curl \
+&& apk add --no-cache py3-pandas
 
-# Copy the .gitattributes file first to ensure proper LFS handling
-COPY .gitattributes ./
+### 3. Get Python, PIP
 
-# Install Git LFS
-RUN apt-get update && apt-get install -y git-lfs
+RUN apk add --no-cache python3 \
+&& python3 -m ensurepip \
+&& pip3 install --upgrade pip setuptools \
+&& rm -r /usr/lib/python*/ensurepip && \
+if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip ; fi && \
+if [[ ! -e /usr/bin/python ]]; then ln -sf /usr/bin/python3 /usr/bin/python; fi && \
+rm -r /root/.cache
+
+
+# Set fallback mount directory
+ENV MNT_DIR /mnt/gcs
 
 # Copy local code to the container image.
 ENV APP_HOME /app
 WORKDIR $APP_HOME
 COPY . ./
 
-# Install production dependencies.
+###Create mount directory for service
+RUN mkdir -p $MNT_DIR
+
+
+### Get Flask for the app
+RUN pip install --trusted-host pypi.python.org flask
+RUN apk update
+RUN apk add make automake gcc g++ subversion python3-dev
+
+COPY ./requirements.txt .
 RUN pip install -r requirements.txt
 
-# Run the web service on container startup. Here we use the gunicorn
-# webserver, with one worker process and 8 threads.
-# For environments with multiple CPU cores, increase the number of workers
-# to be equal to the cores available.
-# Timeout is set to 0 to disable the timeouts of the workers to allow Cloud Run to handle instance scaling.
-CMD exec gunicorn --bind :$PORT --workers 8 --threads 8 --timeout 0 handler:app
+
+EXPOSE 8081    
+ADD handler.py /
+CMD ["python", "handler.py"]

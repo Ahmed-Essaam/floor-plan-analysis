@@ -1,6 +1,4 @@
-Flask==3.0.0
-gunicorn==21.2.0
-Werkzeug==3.0.0
+Werkzeug
 opencv-python-headless==4.5.5.64
 torch==2.0.1 --index-url https://download.pytorch.org/whl/cpu
 lmdb==1.4.0
@@ -9,4 +7,3 @@ shapely==2.0.0
 svgpathtools==1.5.1
 gdown==4.6.4
 easyocr==1.7.1
-pandas==2.1.2

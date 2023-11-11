@@ -25,7 +25,7 @@ with open(roof_plan_path, 'rb') as roof_file:
     files.append(('roof_plan', (f'roof_plan', roof_file_content, f'image/{file_type}')))
 
 # Send the POST request with files and data
-resp = requests.post("http://127.0.0.1:5000/", files=files, data={"inputs": json.dumps(data)})
+resp = requests.post("https://floor-plan-analysis-api-v2-6jrzgqzjzq-uk.a.run.app", files=files, data={"inputs": json.dumps(data)})
 
 # Print the response
 print(resp.json())
