@@ -1,10 +1,8 @@
-Flask==2.1.2
+Flask==3.0.0
 gunicorn==21.2.0
 Werkzeug==2.2.2
 opencv-python-headless==4.5.5.64
-torch==2.0.1
-torchvision==0.15.2
---index-url https://download.pytorch.org/whl/cpu
+torch==2.0.1 --index-url https://download.pytorch.org/whl/cpu
 lmdb==1.4.0
 scikit-image==0.19.3
 shapely==2.0.0
