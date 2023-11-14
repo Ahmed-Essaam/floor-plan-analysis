@@ -89,4 +89,4 @@ if __name__ == "__main__":
     # load the model
     file_path = Path(__file__).resolve().parent
     device, split, model = load_model(file_path)
-    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 8081)))
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 8080)))
