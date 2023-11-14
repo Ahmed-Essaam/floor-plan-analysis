@@ -1,5 +1,5 @@
 Werkzeug
-torch torchvision --index-url https://download.pytorch.org/whl/cpu
+torch --index-url https://download.pytorch.org/whl/cpu
 opencv-python-headless==4.5.5.64
 lmdb==1.4.0
 scikit-image==0.19.3
