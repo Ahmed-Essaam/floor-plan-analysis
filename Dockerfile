@@ -10,18 +10,11 @@ COPY requirements.txt .
 # Install any necessary dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Install Git LFS to fetch the large model file
-RUN apt-get update && apt-get install -y git-lfs
-RUN git lfs install
+# Install Git and wget
+RUN apt-get update && apt-get install -y git wget
 
-# Clone the Git LFS repository containing the large model file
-RUN git lfs clone https://github.com/Ahmed-Essaam/floor-plan-analysis
-
-# Copy the first large model file from the cloned repository to your app directory
-RUN cp https://github.com/Ahmed-Essaam/floor-plan-analysis/blob/main/floortrans/models/model_1427.pth .
-
-# Copy the large model file from the cloned repository to your app directory
-RUN cp https://github.com/Ahmed-Essaam/floor-plan-analysis/blob/main/floortrans/models/model_best_val_loss_var.pkl .
+# Clone the repository (without git lfs)
+RUN git clone https://github.com/Ahmed-Essaam/floor-plan-analysis
 
 # Copy the rest of your application code into the container
 COPY . .
