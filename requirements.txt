@@ -1,4 +1,5 @@
-Werkzeug
+Flask==3.0.0
+Werkzeug==3.0.0
 torch --index-url https://download.pytorch.org/whl/cpu
 opencv-python-headless==4.5.5.64
 lmdb==1.4.0
