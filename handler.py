@@ -5,8 +5,6 @@ import logging
 from flask import Flask, request, jsonify
 import json
 import os
-from pathlib import Path
-
 
 ''' 
 ### Description: The function Detects floor plan objects in uploaded images using a pre-trained model 
@@ -87,6 +85,7 @@ def index():
 
 if __name__ == "__main__":
     # load the model
-    file_path = Path(__file__).resolve().parent
-    device, split, model = load_model(file_path)
+    model_file_path = os.path.dirname(os.path.realpath(__file__))
+    print(f"Model file path: {model_file_path}")
+    device, split, model = load_model(model_file_path)
     app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 8080)))
